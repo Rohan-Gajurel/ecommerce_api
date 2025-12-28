@@ -24,8 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'mptt',
     'products',
-    'drf-spectacular',
-    
+    'drf_spectacular', 
 ]
 
 MIDDLEWARE = [
@@ -101,3 +100,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Ecommerce API',
+    'DESCRIPTION': 'A simple ecommerce API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

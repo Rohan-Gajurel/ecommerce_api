@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Ecommerce API
+  version: 1.0.0
+  description: A simple ecommerce API
+paths:
+  /api/brand/:
+    get:
+      operationId: brand_retrieve
+      description: A simple ViewSet for listing or retrieving brand.
+      tags:
+      - brand
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/catrgory/:
+    get:
+      operationId: catrgory_retrieve
+      description: A simple ViewSet for listing or retrieving categories.
+      tags:
+      - catrgory
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/product/:
+    get:
+      operationId: product_retrieve
+      description: A simple ViewSet for listing or retrieving product.
+      tags:
+      - product
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
