@@ -8,7 +8,7 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
-class Categories(MPTTModel):
+class Category(MPTTModel):
     name=models.CharField(max_length=100)
     parent=TreeForeignKey('self',on_delete=models.PROTECT,null=True,blank=True,related_name='children')
 
@@ -24,7 +24,18 @@ class Product(models.Model):
     description=models.TextField()
     is_digital=models.BooleanField(default=False)
     brand=models.ForeignKey(Brand,on_delete=models.CASCADE)
-    category=TreeForeignKey('Categories',on_delete=models.PROTECT)
+    category=TreeForeignKey('Category',on_delete=models.PROTECT)
+    is_active=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+    
+class ProductLine(models.Model):
+    price=models.DecimalField(max_digits=5,decimal_places=2)
+    stock_qty=models.IntegerField()
+    sku=models.CharField(max_length=100)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    is_active=models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.sku
